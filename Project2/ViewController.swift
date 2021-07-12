@@ -43,11 +43,14 @@ class ViewController: UIViewController {
         button2.setImage(UIImage(named: countries[1]), for: .normal)
         button3.setImage(UIImage(named: countries[2]), for: .normal)
         
+        //Challenge 1
         title = countries[correctAnswer].uppercased() + "   score: \(score)"
     }
     
     @IBAction func buttonTapped(_ sender: UIButton) {
         var title: String
+        
+        //Challenge 3: When someone chooses the wrong flag, tell them their mistake in your alert message.
         
         if sender.tag == correctAnswer {
             title = "Correct"
@@ -60,8 +63,9 @@ class ViewController: UIViewController {
             scoreCounter += 1
         }
         
+        //Challenge 2: Keep track of how many questions have been asked, and show one final alert controller after they have answered 10.
         
-        if scoreCounter < 5 {
+        if scoreCounter < 10 {
             let ac = UIAlertController(title: title, message: "Your score is \(score)", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
         present(ac, animated: true)
