@@ -40,8 +40,8 @@ class ViewController: UIViewController {
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
         
-        //challenge 3 Day 23: Go back to project 2 and add a bar button item that shows their score when tapped.
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(scoreTapped))
+        //challenge 3 Day 22: Go back to project 2 and add a bar button item that shows their score when tapped.
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Score", style: .plain, target: self, action: #selector(scoreTapped))
         
         button1.setImage(UIImage(named: countries[0]), for: .normal)
         button2.setImage(UIImage(named: countries[1]), for: .normal)
@@ -84,7 +84,7 @@ class ViewController: UIViewController {
     }
     
     //MARK: - Methods
-    //challenge 3 Day 23: Go back to project 2 and add a bar button item that shows their score when tapped.
+    //challenge 3 Day 22: Go back to project 2 and add a bar button item that shows their score when tapped.
     @objc func scoreTapped() {
         let score = UIAlertController(title: "Score Status", message: "Your score is \(score)", preferredStyle: .alert)
         score.addAction(UIAlertAction(title: "Back", style: .default, handler: nil))
