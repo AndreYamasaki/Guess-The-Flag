@@ -15,9 +15,18 @@ class ViewController: UIViewController {
     @IBOutlet var button3: UIButton!
     
     var countries = [String]()
-    var score = 0
+    var score = 0 {
+        didSet {
+            if score > bestScore {
+                bestScore = score
+                saveScore()
+                showNewBestScore()
+            }
+        }
+    }
     var correctAnswer = 0
     var scoreCounter = 0
+    var bestScore = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +42,9 @@ class ViewController: UIViewController {
         button3.layer.borderColor = UIColor.lightGray.cgColor
         
         askQuestion(action: nil)
+        
+        let defaults = UserDefaults.standard
+        defaults.integer(forKey: "BestScore")
     }
     
     func askQuestion(action: UIAlertAction!) {
@@ -89,6 +101,18 @@ class ViewController: UIViewController {
         let score = UIAlertController(title: "Score Status", message: "Your score is \(score)", preferredStyle: .alert)
         score.addAction(UIAlertAction(title: "Back", style: .default, handler: nil))
         present(score, animated: true)
+    }
+    
+    func saveScore() {
+        let defaults = UserDefaults()
+        defaults.setValue(bestScore, forKey: "BestScore")
+    }
+
+//Challenge 2 day 49 Modify project 2 so that it saves the player’s highest score, and shows a special message if their new score beat the previous high score.
+    func showNewBestScore() {
+        let ac = UIAlertController(title: "Best Score!", message: "Your best score is: \(bestScore)", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Back to the game", style: .default, handler: askQuestion))
+        present(ac, animated: true)
     }
 }
 
