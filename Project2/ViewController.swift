@@ -67,7 +67,15 @@ class ViewController: UIViewController {
     @IBAction func buttonTapped(_ sender: UIButton) {
         var title: String
         
-        //Challenge 3: When someone chooses the wrong flag, tell them their mistake in your alert message.
+//Challenge 3 day 58: Go back to project 2 and make the flags scale down with a little bounce when pressed.
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 5, options: []) {
+            sender.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        } completion: { finished in
+            sender.transform = .identity
+        }
+
+        
+//Challenge 3: When someone chooses the wrong flag, tell them their mistake in your alert message.
         
         if sender.tag == correctAnswer {
             title = "Correct"
